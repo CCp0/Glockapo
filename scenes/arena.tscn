@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b5qqta5wsw672" path="res://scripts/arena.gd" id="1_arena_script"]
 [ext_resource type="PackedScene" uid="uid://b1xxw2d3bybh7" path="res://scenes/kakapo.tscn" id="2_kakapo"]
 [ext_resource type="PackedScene" uid="uid://jsg1flrhtt2l" path="res://scenes/ui/virtual_joystick.tscn" id="3_joystick"]
+[ext_resource type="Script" path="res://scripts/touch_fire_button.gd" id="4_fire_button_script"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ground"]
 size = Vector2(720, 220)
@@ -39,3 +40,29 @@ zoom = Vector2(0.85, 0.85)
 
 [node name="VirtualJoystick" parent="HUD" instance=ExtResource("3_joystick")]
 layout_mode = 3
+
+[node name="AimJoystick" parent="HUD" instance=ExtResource("3_joystick")]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -160.0
+offset_right = -40.0
+offset_bottom = -40.0
+output = 1
+
+[node name="TouchFireButton" type="Button" parent="HUD"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -160.0
+offset_right = -180.0
+offset_bottom = -80.0
+text = "FIRE"
+script = ExtResource("4_fire_button_script")

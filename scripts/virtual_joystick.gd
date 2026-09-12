@@ -1,8 +1,12 @@
 extends Control
 
+enum Output { MOVE, AIM }
+
 const BASE_RADIUS := 60.0
 const KNOB_RADIUS := 28.0
 const MAX_KNOB_OFFSET := 50.0
+
+@export var output: Output = Output.MOVE
 
 var _touch_index: int = -1
 var _knob_offset: Vector2 = Vector2.ZERO
@@ -24,9 +28,12 @@ func _gui_input(event: InputEvent) -> void:
 			_update_knob(event.position)
 		elif not event.pressed and event.index == _touch_index:
 			_touch_index = -1
-			_knob_offset = Vector2.ZERO
-			InputBridge.set_touch_move_vector(Vector2.ZERO)
-			queue_redraw()
+			# The move stick snaps back to a stop; the aim stick holds its
+			# last direction instead of falling back to an irrelevant mouse.
+			if output == Output.MOVE:
+				_knob_offset = Vector2.ZERO
+				_report(Vector2.ZERO)
+				queue_redraw()
 	elif event is InputEventScreenDrag and event.index == _touch_index:
 		_update_knob(event.position)
 
@@ -34,5 +41,12 @@ func _gui_input(event: InputEvent) -> void:
 func _update_knob(local_position: Vector2) -> void:
 	var offset: Vector2 = local_position - size / 2.0
 	_knob_offset = offset.limit_length(MAX_KNOB_OFFSET)
-	InputBridge.set_touch_move_vector(_knob_offset / MAX_KNOB_OFFSET)
+	_report(_knob_offset / MAX_KNOB_OFFSET)
 	queue_redraw()
+
+
+func _report(vector: Vector2) -> void:
+	if output == Output.MOVE:
+		InputBridge.set_touch_move_vector(vector)
+	else:
+		InputBridge.set_touch_aim_vector(vector)

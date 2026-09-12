@@ -1,15 +1,12 @@
-[gd_resource type="Resource" load_steps=4 format=3]
+[gd_resource type="Resource" script_class="BiomeConfig" format=3 uid="uid://ctc7ueaxhx7tp"]
 
-[ext_resource type="Script" path="res://resources/biome_config.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://dna6jaovth4ty" path="res://resources/biome_config.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://bt24l2jyflv0d" path="res://scenes/platforms/branch_platform.tscn" id="2_branch"]
-[ext_resource type="PackedScene" uid="uid://6ojyacxtvar12" path="res://scenes/platforms/stump_platform.tscn" id="3_stump"]
+[ext_resource type="PackedScene" uid="uid://ra0jvltdnryx" path="res://scenes/platforms/stump_platform.tscn" id="3_stump"]
 
 [resource]
 script = ExtResource("1_script")
 id = "forest"
 display_name = "Forest"
 sky_color = Color(0.53, 0.75, 0.45, 1)
-ground_color = Color(0.28, 0.42, 0.18, 1)
-ground_base_color = Color(0.18, 0.12, 0.08, 1)
 platform_scenes = Array[PackedScene]([ExtResource("2_branch"), ExtResource("3_stump")])
-flight_obstacle_scenes = Array[PackedScene]([])

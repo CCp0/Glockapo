@@ -1,20 +1,36 @@
 [gd_scene format=3 uid="uid://b1xxw2d3bybh7"]
 
-[ext_resource type="Script" path="res://scripts/kakapo.gd" id="1_kakapo_script"]
+[ext_resource type="Script" uid="uid://c1cb0fpsr7nyx" path="res://scripts/kakapo.gd" id="1_kakapo_script"]
 [ext_resource type="Texture2D" uid="uid://cs7yjjmbf2lu6" path="res://assets/kakapo/Kakapo Sprite.png" id="2_kakapo_tex"]
+[ext_resource type="Script" uid="uid://bhqm0bqo5mgkc" path="res://scripts/weapon.gd" id="3_weapon_script"]
+[ext_resource type="Texture2D" uid="uid://83wvd0fv8dc3" path="res://assets/glock/GlockSprite.png" id="4_glock_tex"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kakapo"]
-radius = 44.0
-height = 97.0
+radius = 38.0
+height = 76.0
 
-[node name="Kakapo" type="CharacterBody2D"]
+[node name="Kakapo" type="CharacterBody2D" unique_id=1403785188]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_kakapo_script")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1843872170]
 scale = Vector2(2.2, 2.2)
 texture = ExtResource("2_kakapo_tex")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=81582896]
+position = Vector2(2, 4)
 shape = SubResource("CapsuleShape2D_kakapo")
+
+[node name="GlockMount" type="Node2D" parent="." unique_id=106555429]
+position = Vector2(10, 10)
+scale = Vector2(1.8, 1.8)
+script = ExtResource("3_weapon_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="GlockMount" unique_id=1967900779]
+position = Vector2(-13.888889, 3.3333337)
+scale = Vector2(0.44097224, 0.3871528)
+texture = ExtResource("4_glock_tex")
+
+[node name="Muzzle" type="Marker2D" parent="GlockMount" unique_id=1248320866]
+position = Vector2(-28.333332, -2.777778)
