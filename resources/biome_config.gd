@@ -13,6 +13,9 @@ extends Resource
 ## Placeholder ground color until real ground art exists
 @export var ground_color: Color = Color(0.28, 0.42, 0.18)
 
+## Darker base/soil band beneath the ground surface, where stumps sit
+@export var ground_base_color: Color = Color(0.18, 0.12, 0.08)
+
 @export var platform_scenes: Array[PackedScene] = []
 
 ## Enemy scene this biome's spawner instances (forest: wood pigeon).

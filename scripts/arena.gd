@@ -1,26 +1,20 @@
 extends Node2D
 
-## The ground arena — first end-to-end draft is the forest biome
-## (docs/TECH_PLAN.md §17 step 1). Ground/sky colors and platform scenes
-## are read from `biome` rather than hardcoded, so swapping in a sea or
-## city biome later is a resource + level-layout change, not a rewrite.
-## Kakapo, gun, enemies, and rocks all land in later commits.
-
-# Defaults to the forest resource directly (not GameState.current_biome)
-# so this scene stays loadable/testable standalone, independent of
-# autoload init order. Once Main.tscn exists (flight milestone) it can
-# assign GameState.current_biome onto an Arena instance before use.
+# Defaults to the forest resource currently (not GameState.current_biome)
 @export var biome: BiomeConfig = preload("res://resources/biomes/forest.tres")
 
-## Hand-authored level layout: which entry of biome.platform_scenes to
-## place, and where. Positions are in this scene's local space.
+# scene_index into biome.platform_scenes (0 = branch, 1 = stump for forest).
+# Negative scale.x mirrors a branch so it reads as entering from the right.
 @export var platform_layout: Array[Dictionary] = [
-	{"scene_index": 0, "position": Vector2(220, 940)},
-	{"scene_index": 1, "position": Vector2(520, 980)},
+	{"scene_index": 0, "position": Vector2(50, 480), "scale": Vector2(2.6, 2.6)},
+	{"scene_index": 0, "position": Vector2(670, 380), "scale": Vector2(-2.6, 2.6)},
+	{"scene_index": 1, "position": Vector2(180, 740), "scale": Vector2(1.5, 1.5)},
+	{"scene_index": 1, "position": Vector2(540, 740), "scale": Vector2(1.5, 1.5)},
 ]
 
 @onready var background: Polygon2D = $Background
-@onready var ground_visual: Polygon2D = $Ground/GroundVisual
+@onready var grass_visual: Polygon2D = $Ground/GrassVisual
+@onready var soil_visual: Polygon2D = $Ground/SoilVisual
 @onready var platforms: Node2D = $Platforms
 
 
@@ -31,7 +25,8 @@ func _ready() -> void:
 
 func _apply_biome_colors() -> void:
 	background.color = biome.sky_color
-	ground_visual.color = biome.ground_color
+	grass_visual.color = biome.ground_color
+	soil_visual.color = biome.ground_base_color
 
 
 func _spawn_platforms() -> void:
@@ -39,4 +34,5 @@ func _spawn_platforms() -> void:
 		var scene: PackedScene = biome.platform_scenes[entry["scene_index"]]
 		var instance: Node2D = scene.instantiate()
 		instance.position = entry["position"]
+		instance.scale = entry.get("scale", Vector2.ONE)
 		platforms.add_child(instance)

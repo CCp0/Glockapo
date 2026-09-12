@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://b1xxw2d3bybh7"]
+
+[ext_resource type="Script" path="res://scripts/kakapo.gd" id="1_kakapo_script"]
+[ext_resource type="Texture2D" uid="uid://cs7yjjmbf2lu6" path="res://assets/kakapo/Kakapo Sprite.png" id="2_kakapo_tex"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kakapo"]
+radius = 44.0
+height = 97.0
+
+[node name="Kakapo" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_kakapo_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2.2, 2.2)
+texture = ExtResource("2_kakapo_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_kakapo")
