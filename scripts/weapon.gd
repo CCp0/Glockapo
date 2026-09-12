@@ -18,12 +18,23 @@ var reloading := false
 
 var _fire_cooldown_remaining := 0.0
 var _reload_time_remaining := 0.0
+var _mount_scale_magnitude: float
+
+
+func _ready() -> void:
+	_mount_scale_magnitude = absf(scale.x)
 
 
 func _process(delta: float) -> void:
-	# The glock art faces left at rest, not right, so the mount needs a
-	# half-turn added on top of the aim angle to point the barrel correctly.
-	rotation = InputBridge.aim_vector.angle() + PI
+	var aim: Vector2 = InputBridge.aim_vector
+	# The art faces left at rest. Rotating a further half-turn to face right
+	# would render it upside down, so we mirror the mount instead
+	if aim.x >= 0.0:
+		scale.x = -_mount_scale_magnitude
+		rotation = aim.angle()
+	else:
+		scale.x = _mount_scale_magnitude
+		rotation = aim.angle() + PI
 
 	_fire_cooldown_remaining = maxf(_fire_cooldown_remaining - delta, 0.0)
 
