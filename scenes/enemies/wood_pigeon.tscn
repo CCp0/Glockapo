@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://ne28v2586mfdb"]
+
+[ext_resource type="Script" path="res://scripts/enemy_base.gd" id="1_enemy_script"]
+[ext_resource type="SpriteFrames" path="res://resources/pigeon_sprite_frames.tres" id="2_pigeon_frames"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pigeon"]
+radius = 28.0
+
+[node name="WoodPigeon" type="Area2D"]
+collision_layer = 16
+collision_mask = 4
+scale = Vector2(1.7, 1.7)
+script = ExtResource("1_enemy_script")
+speed = 160.0
+health = 2
+contact_damage = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_pigeon_frames")
+animation = &"fly"
+autoplay = "fly"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pigeon")

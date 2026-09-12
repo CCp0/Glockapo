@@ -10,6 +10,13 @@ var _time_alive := 0.0
 
 func _ready() -> void:
 	rotation = direction.angle()
+	area_entered.connect(_on_area_entered)
+
+
+func _on_area_entered(area: Area2D) -> void:
+	if area.has_method("take_damage"):
+		area.take_damage(1)
+	queue_free()
 
 
 func _physics_process(delta: float) -> void:

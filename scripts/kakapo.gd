@@ -29,3 +29,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_glock_fired(recoil_impulse: Vector2) -> void:
 	velocity += recoil_impulse
+
+
+func take_contact_damage(amount: int) -> void:
+	GameState.take_damage(amount)

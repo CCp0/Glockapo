@@ -4,6 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://b1xxw2d3bybh7" path="res://scenes/kakapo.tscn" id="2_kakapo"]
 [ext_resource type="PackedScene" uid="uid://jsg1flrhtt2l" path="res://scenes/ui/virtual_joystick.tscn" id="3_joystick"]
 [ext_resource type="Script" path="res://scripts/touch_fire_button.gd" id="4_fire_button_script"]
+[ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="5_enemy_spawner_script"]
+[ext_resource type="Script" path="res://scripts/health_hud.gd" id="6_health_hud_script"]
+[ext_resource type="PackedScene" uid="uid://b5mi2hry9te3i" path="res://scenes/ui/game_over_screen.tscn" id="7_game_over"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ground"]
 size = Vector2(720, 220)
@@ -32,11 +35,23 @@ polygon = PackedVector2Array(-360, -90, 360, -90, 360, 110, -360, 110)
 [node name="Kakapo" parent="." instance=ExtResource("2_kakapo")]
 position = Vector2(360, 650)
 
+[node name="EnemySpawner" type="Node2D" parent="."]
+script = ExtResource("5_enemy_spawner_script")
+
 [node name="MainCamera" type="Camera2D" parent="."]
 position = Vector2(360, 520)
 zoom = Vector2(0.85, 0.85)
 
+[node name="GameOverScreen" parent="." instance=ExtResource("7_game_over")]
+
 [node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="HealthHUD" type="HBoxContainer" parent="HUD"]
+script = ExtResource("6_health_hud_script")
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 200.0
+offset_bottom = 44.0
 
 [node name="VirtualJoystick" parent="HUD" instance=ExtResource("3_joystick")]
 layout_mode = 3
