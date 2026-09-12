@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjcsrpu0o2j4r"]
+
+[ext_resource type="Script" path="res://scripts/arena.gd" id="1_arena_script"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ground"]
+size = Vector2(720, 180)
+
+[node name="Arena" type="Node2D"]
+script = ExtResource("1_arena_script")
+
+[node name="Background" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(0, 0, 720, 0, 720, 1280, 0, 1280)
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(360, 1190)
+collision_layer = 1
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+shape = SubResource("RectangleShape2D_ground")
+
+[node name="GroundVisual" type="Polygon2D" parent="Ground"]
+polygon = PackedVector2Array(-360, -90, 360, -90, 360, 90, -360, 90)
+
+[node name="Platforms" type="Node2D" parent="."]
+
+[node name="MainCamera" type="Camera2D" parent="."]
+position = Vector2(360, 640)

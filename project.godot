@@ -13,11 +13,28 @@ config_version=5
 config/name="Glockapo"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
+run/main_scene="res://scenes/arena.tscn"
+
+[autoload]
+
+GameState="*res://autoloads/game_state.gd"
 
 [display]
 
+window/size/viewport_width=720
+window/size/viewport_height=1280
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[layer_names]
+
+2d_physics/layer_1="ground"
+2d_physics/layer_2="platforms"
+2d_physics/layer_3="player"
+2d_physics/layer_4="player_bullets"
+2d_physics/layer_5="enemies"
+2d_physics/layer_6="pickups"
+2d_physics/layer_7="flight_obstacles"
 
 [physics]
 
@@ -28,3 +45,4 @@ window/stretch/aspect="expand"
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/canvas_textures/default_texture_filter=0
