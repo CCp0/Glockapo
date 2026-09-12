@@ -1,6 +1,8 @@
 extends Node2D
+class_name Weapon
 
 signal fired(recoil_impulse: Vector2)
+signal ammo_changed(rounds_in_mag: int, mag_size: int)
 
 const MAG_SIZE := 8
 const FIRE_COOLDOWN := 0.15
@@ -23,6 +25,7 @@ var _mount_scale_magnitude: float
 
 func _ready() -> void:
 	_mount_scale_magnitude = absf(scale.x)
+	ammo_changed.emit(rounds_in_mag, MAG_SIZE)
 
 
 func _process(delta: float) -> void:
@@ -43,6 +46,7 @@ func _process(delta: float) -> void:
 		if _reload_time_remaining <= 0.0:
 			reloading = false
 			rounds_in_mag = MAG_SIZE
+			ammo_changed.emit(rounds_in_mag, MAG_SIZE)
 	elif rounds_in_mag == 0 or InputBridge.reload_pressed:
 		_start_reload()
 
@@ -59,6 +63,7 @@ func _start_reload() -> void:
 func _fire() -> void:
 	rounds_in_mag -= 1
 	_fire_cooldown_remaining = FIRE_COOLDOWN
+	ammo_changed.emit(rounds_in_mag, MAG_SIZE)
 
 	var aim_dir: Vector2 = InputBridge.aim_vector
 

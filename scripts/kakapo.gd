@@ -5,7 +5,7 @@ const ACCELERATION := 1760.0
 const GRAVITY := 1400.0
 
 @onready var sprite: Sprite2D = $Sprite2D
-@onready var glock_mount: Node2D = $GlockMount
+@onready var glock_mount: Weapon = $GlockMount
 
 
 func _ready() -> void:
@@ -33,3 +33,7 @@ func _on_glock_fired(recoil_impulse: Vector2) -> void:
 
 func take_contact_damage(amount: int) -> void:
 	GameState.take_damage(amount)
+
+
+func collect_rock() -> void:
+	GameState.add_rock()

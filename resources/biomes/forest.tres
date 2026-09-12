@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dna6jaovth4ty" path="res://resources/biome_config.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://bt24l2jyflv0d" path="res://scenes/platforms/branch_platform.tscn" id="2_branch"]
 [ext_resource type="PackedScene" uid="uid://ra0jvltdnryx" path="res://scenes/platforms/stump_platform.tscn" id="3_stump"]
-[ext_resource type="PackedScene" uid="uid://ne28v2586mfdb" path="res://scenes/enemies/wood_pigeon.tscn" id="4_wood_pigeon"]
+[ext_resource type="PackedScene" uid="uid://bsum4wfih0r20" path="res://scenes/enemies/wood_pigeon.tscn" id="4_wood_pigeon"]
 
 [resource]
 script = ExtResource("1_script")

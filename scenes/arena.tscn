@@ -3,73 +3,90 @@
 [ext_resource type="Script" uid="uid://b5qqta5wsw672" path="res://scripts/arena.gd" id="1_arena_script"]
 [ext_resource type="PackedScene" uid="uid://b1xxw2d3bybh7" path="res://scenes/kakapo.tscn" id="2_kakapo"]
 [ext_resource type="PackedScene" uid="uid://jsg1flrhtt2l" path="res://scenes/ui/virtual_joystick.tscn" id="3_joystick"]
-[ext_resource type="Script" path="res://scripts/touch_fire_button.gd" id="4_fire_button_script"]
-[ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="5_enemy_spawner_script"]
-[ext_resource type="Script" path="res://scripts/health_hud.gd" id="6_health_hud_script"]
+[ext_resource type="Script" uid="uid://jlm11yu5m1me" path="res://scripts/touch_fire_button.gd" id="4_fire_button_script"]
+[ext_resource type="Script" uid="uid://r8oc27gk8mhi" path="res://scripts/enemy_spawner.gd" id="5_enemy_spawner_script"]
+[ext_resource type="Script" uid="uid://dgnw3kqy80oko" path="res://scripts/health_hud.gd" id="6_health_hud_script"]
 [ext_resource type="PackedScene" uid="uid://b5mi2hr0ate3i" path="res://scenes/ui/game_over_screen.tscn" id="7_game_over"]
+[ext_resource type="Script" path="res://scripts/ammo_hud.gd" id="8_ammo_hud_script"]
+[ext_resource type="Script" path="res://scripts/rock_hud.gd" id="9_rock_hud_script"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ground"]
 size = Vector2(720, 220)
 
-[node name="Arena" type="Node2D"]
+[node name="Arena" type="Node2D" unique_id=552640823]
 script = ExtResource("1_arena_script")
 
-[node name="Background" type="Polygon2D" parent="."]
+[node name="Background" type="Polygon2D" parent="." unique_id=2140869350]
 polygon = PackedVector2Array(0, 0, 720, 0, 720, 960, 0, 960)
 
-[node name="Ground" type="StaticBody2D" parent="."]
+[node name="Ground" type="StaticBody2D" parent="." unique_id=2089772106]
 position = Vector2(360, 850)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=2018121801]
 shape = SubResource("RectangleShape2D_ground")
 
-[node name="GrassVisual" type="Polygon2D" parent="Ground"]
+[node name="GrassVisual" type="Polygon2D" parent="Ground" unique_id=1239844378]
 polygon = PackedVector2Array(-360, -110, 360, -110, 360, -90, -360, -90)
 
-[node name="SoilVisual" type="Polygon2D" parent="Ground"]
+[node name="SoilVisual" type="Polygon2D" parent="Ground" unique_id=1642217418]
 polygon = PackedVector2Array(-360, -90, 360, -90, 360, 110, -360, 110)
 
-[node name="Platforms" type="Node2D" parent="."]
+[node name="Platforms" type="Node2D" parent="." unique_id=997435839]
 
-[node name="Kakapo" parent="." instance=ExtResource("2_kakapo")]
+[node name="Kakapo" parent="." unique_id=890051436 instance=ExtResource("2_kakapo")]
 position = Vector2(360, 650)
 
-[node name="EnemySpawner" type="Node2D" parent="."]
+[node name="EnemySpawner" type="Node2D" parent="." unique_id=1934451808]
 script = ExtResource("5_enemy_spawner_script")
 
-[node name="MainCamera" type="Camera2D" parent="."]
+[node name="MainCamera" type="Camera2D" parent="." unique_id=1419334993]
 position = Vector2(360, 520)
 zoom = Vector2(0.85, 0.85)
 
-[node name="GameOverScreen" parent="." instance=ExtResource("7_game_over")]
+[node name="GameOverScreen" parent="." unique_id=501114372 instance=ExtResource("7_game_over")]
 
-[node name="HUD" type="CanvasLayer" parent="."]
+[node name="HUD" type="CanvasLayer" parent="." unique_id=285987804]
 
-[node name="HealthHUD" type="HBoxContainer" parent="HUD"]
-script = ExtResource("6_health_hud_script")
+[node name="HealthHUD" type="HBoxContainer" parent="HUD" unique_id=1510429385]
 offset_left = 24.0
 offset_top = 24.0
 offset_right = 200.0
 offset_bottom = 44.0
+script = ExtResource("6_health_hud_script")
 
-[node name="VirtualJoystick" parent="HUD" instance=ExtResource("3_joystick")]
+[node name="AmmoHUD" type="HBoxContainer" parent="HUD"]
+offset_left = 24.0
+offset_top = 54.0
+offset_right = 250.0
+offset_bottom = 78.0
+script = ExtResource("8_ammo_hud_script")
+
+[node name="RockHUD" type="HBoxContainer" parent="HUD"]
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -140.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = 48.0
+grow_horizontal = 0
+script = ExtResource("9_rock_hud_script")
+
+[node name="VirtualJoystick" parent="HUD" unique_id=1507526767 instance=ExtResource("3_joystick")]
 layout_mode = 3
 
-[node name="AimJoystick" parent="HUD" instance=ExtResource("3_joystick")]
+[node name="AimJoystick" parent="HUD" unique_id=822221034 instance=ExtResource("3_joystick")]
 layout_mode = 3
 anchors_preset = 3
 anchor_left = 1.0
-anchor_top = 1.0
 anchor_right = 1.0
-anchor_bottom = 1.0
 offset_left = -160.0
-offset_top = -160.0
 offset_right = -40.0
-offset_bottom = -40.0
+grow_horizontal = 0
+grow_vertical = 0
 output = 1
 
-[node name="TouchFireButton" type="Button" parent="HUD"]
+[node name="TouchFireButton" type="Button" parent="HUD" unique_id=682040748]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0

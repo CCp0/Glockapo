@@ -13,6 +13,12 @@ const DIVE_WINDOW := 200.0
 const DIVE_ABOVE_MIN := 20.0
 const DIVE_ABOVE_MAX := 80.0
 
+# Rock drop chance per kill rises with wave.
+const ROCK_DROP_BASE_CHANCE := 0.5
+const ROCK_DROP_WAVE_INCREMENT := 0.05
+
+const RockPickupScene := preload("res://scenes/rock_pickup.tscn")
+
 @export var speed: float = 160.0
 @export var health: int = 2
 @export var contact_damage: int = 1
@@ -23,6 +29,7 @@ var velocity: Vector2 = Vector2.ZERO
 var _time_alive: float = 0.0
 var _base_y: float = 0.0
 var _dive_target: Vector2
+var _dying: bool = false
 
 @onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -60,13 +67,24 @@ func _physics_process(delta: float) -> void:
 
 
 func take_damage(amount: int) -> void:
+	if _dying:
+		return
 	health -= amount
 	if health <= 0:
-		_die()
+		_dying = true
+		# take_damage is called from the bullet's area_entered signal, which
+		# fires mid physics-query-flush; adding/freeing physics nodes has to
+		# wait until that's done.
+		call_deferred("_die")
 
 
 func _die() -> void:
 	GameState.birds_downed_this_wave += 1
+	var drop_chance: float = clampf(ROCK_DROP_BASE_CHANCE + ROCK_DROP_WAVE_INCREMENT * (GameState.wave - 1), 0.0, 1.0)
+	if randf() < drop_chance:
+		var rock: Node2D = RockPickupScene.instantiate()
+		rock.global_position = global_position
+		get_parent().add_child(rock)
 	queue_free()
 
 
