@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scripts/touch_fire_button.gd" id="4_fire_button_script"]
 [ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="5_enemy_spawner_script"]
 [ext_resource type="Script" path="res://scripts/health_hud.gd" id="6_health_hud_script"]
-[ext_resource type="PackedScene" uid="uid://b5mi2hry9te3i" path="res://scenes/ui/game_over_screen.tscn" id="7_game_over"]
+[ext_resource type="PackedScene" uid="uid://b5mi2hr0ate3i" path="res://scenes/ui/game_over_screen.tscn" id="7_game_over"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ground"]
 size = Vector2(720, 220)

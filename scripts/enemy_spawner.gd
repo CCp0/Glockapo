@@ -26,6 +26,18 @@ func _spawn_enemy() -> void:
 	enemy.position = Vector2(-80.0 if from_left else viewport_width + 80.0, randf_range(min_y, max_y))
 	var direction: float = 1.0 if from_left else -1.0
 	enemy.velocity = Vector2(direction * enemy.speed, 0.0)
-	enemy.movement_pattern = EnemyBase.MovementPattern.SINE_DRIFT if randf() < 0.5 else EnemyBase.MovementPattern.STRAIGHT
+	enemy.movement_pattern = _random_movement_pattern()
 
 	get_parent().add_child(enemy)
+
+
+func _random_movement_pattern() -> EnemyBase.MovementPattern:
+	# Weighted toward diving so pigeons read as a real threat, not just
+	# scenery drifting past.
+	var roll: float = randf()
+	if roll < 0.75:
+		return EnemyBase.MovementPattern.DIVE
+	elif roll < 0.90:
+		return EnemyBase.MovementPattern.SINE_DRIFT
+	else:
+		return EnemyBase.MovementPattern.STRAIGHT
