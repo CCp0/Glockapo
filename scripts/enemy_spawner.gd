@@ -4,18 +4,26 @@ extends Node2D
 @export var min_y: float = 150.0
 @export var max_y: float = 650.0
 
+@export var ground_spawn_interval: float = 7.0
+const GROUND_Y := 695.0
+
 var _time_since_spawn: float = 0.0
+var _time_since_ground_spawn: float = 0.0
 
 
 func _process(delta: float) -> void:
 	_time_since_spawn += delta
 	if _time_since_spawn >= spawn_interval:
 		_time_since_spawn = 0.0
-		_spawn_enemy()
+		_spawn_enemy(GameState.current_biome.enemy_scene, randf_range(min_y, max_y))
+
+	_time_since_ground_spawn += delta
+	if _time_since_ground_spawn >= ground_spawn_interval:
+		_time_since_ground_spawn = 0.0
+		_spawn_enemy(GameState.current_biome.ground_enemy_scene, GROUND_Y)
 
 
-func _spawn_enemy() -> void:
-	var enemy_scene: PackedScene = GameState.current_biome.enemy_scene
+func _spawn_enemy(enemy_scene: PackedScene, spawn_y: float) -> void:
 	if enemy_scene == null:
 		return
 
@@ -23,10 +31,11 @@ func _spawn_enemy() -> void:
 	var from_left: bool = randf() < 0.5
 	var viewport_width: float = get_viewport_rect().size.x
 
-	enemy.position = Vector2(-80.0 if from_left else viewport_width + 80.0, randf_range(min_y, max_y))
+	enemy.position = Vector2(-80.0 if from_left else viewport_width + 80.0, spawn_y)
 	var direction: float = 1.0 if from_left else -1.0
 	enemy.velocity = Vector2(direction * enemy.speed, 0.0)
-	enemy.movement_pattern = _random_movement_pattern()
+	var is_ground: bool = enemy.spawn_location == EnemyBase.SpawnLocation.GROUND
+	enemy.movement_pattern = EnemyBase.MovementPattern.STRAIGHT if is_ground else _random_movement_pattern()
 
 	get_parent().add_child(enemy)
 

@@ -18,7 +18,11 @@ extends Resource
 
 @export var platform_scenes: Array[PackedScene] = []
 
-## Enemy scene this biome's spawner instances (forest: wood pigeon).
+## Flying enemy scene this biome's spawner instances (forest: wood pigeon).
 @export var enemy_scene: PackedScene
+
+## Ground-walking enemy scene, spawned separately from the flying one
+## (forest: armored pigeon).
+@export var ground_enemy_scene: PackedScene
 
 @export var flight_obstacle_scenes: Array[PackedScene] = []

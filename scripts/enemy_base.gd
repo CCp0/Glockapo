@@ -2,6 +2,7 @@ extends Area2D
 class_name EnemyBase
 
 enum MovementPattern { STRAIGHT, SINE_DRIFT, DIVE }
+enum SpawnLocation { AERIAL, GROUND }
 
 const SINE_AMPLITUDE := 40.0
 const SINE_FREQUENCY := 1.5
@@ -23,6 +24,9 @@ const RockPickupScene := preload("res://scenes/rock_pickup.tscn")
 @export var health: int = 2
 @export var contact_damage: int = 1
 @export var movement_pattern: MovementPattern = MovementPattern.STRAIGHT
+## GROUND enemies are kept at ground level by the spawner and always use
+## the STRAIGHT pattern regardless of the above.
+@export var spawn_location: SpawnLocation = SpawnLocation.AERIAL
 
 var velocity: Vector2 = Vector2.ZERO
 
