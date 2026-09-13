@@ -20,7 +20,7 @@ func _ready() -> void:
 	area_entered.connect(_on_area_entered)
 	_spawn_y = position.y
 	_base_x = position.x
-	_dive_target_x = InputBridge.player.global_position.x if InputBridge.player else position.x
+	_dive_target_x = InputBridge.player.global_position.x if is_instance_valid(InputBridge.player) else position.x
 
 
 func _physics_process(delta: float) -> void:
@@ -37,7 +37,7 @@ func _physics_process(delta: float) -> void:
 
 	# Camera scrolls now, so "off screen" is relative to the player rather
 	# than a fixed world height.
-	if InputBridge.player and position.y - InputBridge.player.global_position.y > MAX_DISTANCE_FROM_PLAYER:
+	if is_instance_valid(InputBridge.player) and position.y - InputBridge.player.global_position.y > MAX_DISTANCE_FROM_PLAYER:
 		queue_free()
 
 

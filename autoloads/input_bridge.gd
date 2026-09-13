@@ -35,8 +35,13 @@ func _process(_delta: float) -> void:
 
 	if _touch_aim_vector != Vector2.ZERO:
 		aim_vector = _touch_aim_vector
-	elif player:
+	elif is_instance_valid(player):
 		aim_vector = (player.get_global_mouse_position() - player.global_position).normalized()
+	else:
+		# player is null on first boot, or a stale reference to a node
+		# freed by reload_current_scene() (restart) until the new scene's
+		# kakapo re-registers itself in its own _ready().
+		player = null
 
 	fire_held = Input.is_action_pressed("fire") or _touch_fire_held
 	reload_pressed = Input.is_action_just_pressed("reload")

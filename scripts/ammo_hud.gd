@@ -19,7 +19,7 @@ func _ready() -> void:
 	_filled_texture = _cropped(BulletTexture)
 	_empty_texture = _cropped(EmptyBulletTexture)
 
-	if not InputBridge.player:
+	if not is_instance_valid(InputBridge.player):
 		return
 	var weapon: Weapon = InputBridge.player.glock_mount
 	weapon.ammo_changed.connect(_on_ammo_changed)

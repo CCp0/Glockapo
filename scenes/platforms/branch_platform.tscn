@@ -1,16 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://bt24l2jyflv0d"]
+[gd_scene format=3 uid="uid://bt24l2jyflv0d"]
 
 [ext_resource type="Texture2D" uid="uid://ckt8mb1wpn1jq" path="res://assets/platforms/branch.png" id="1_branch_tex"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_branch"]
-size = Vector2(56, 16)
+size = Vector2(56, 10)
 
-[node name="BranchPlatform" type="StaticBody2D"]
+[node name="BranchPlatform" type="StaticBody2D" unique_id=1192506168]
 collision_layer = 2
 collision_mask = 0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=518208174]
 texture = ExtResource("1_branch_tex")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1380870158]
+position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_branch")

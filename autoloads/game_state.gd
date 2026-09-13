@@ -13,8 +13,9 @@ const GROUND_INVASION_CHANCE := 0.4
 var current_biome: BiomeConfig = preload("res://resources/biomes/forest.tres")
 var hp: int = MAX_HP
 var wave: int = 1
-var rocks: int = 25
+var rocks: int = 0
 var birds_downed_this_wave: int = 0
+var total_birds_downed_this_run: int = 0
 var nests_destroyed_this_run: int = 0
 
 var _dead: bool = false
@@ -56,6 +57,7 @@ func reset() -> void:
 	wave = 1
 	rocks = 0
 	birds_downed_this_wave = 0
+	total_birds_downed_this_run = 0
 	nests_destroyed_this_run = 0
 	_dead = false
 	hp_changed.emit(hp)

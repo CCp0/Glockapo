@@ -66,7 +66,7 @@ func _ready() -> void:
 		_head_hitbox.position.x *= -1
 
 	# Captured once at spawn (not continuously tracked), so the dive swoops toward roughly where the player was rather than homing in on them.
-	if InputBridge.player:
+	if is_instance_valid(InputBridge.player):
 		var player_pos: Vector2 = InputBridge.player.global_position
 		_dive_target = Vector2(player_pos.x, player_pos.y - randf_range(DIVE_ABOVE_MIN, DIVE_ABOVE_MAX))
 	else:
@@ -134,6 +134,7 @@ func _spawn_critical_hit_effect() -> void:
 
 func _die() -> void:
 	GameState.birds_downed_this_wave += 1
+	GameState.total_birds_downed_this_run += 1
 	var drop_chance: float = clampf(ROCK_DROP_BASE_CHANCE + ROCK_DROP_WAVE_INCREMENT * (GameState.wave - 1), 0.0, 1.0)
 	if randf() < drop_chance:
 		var rock: Node2D = RockPickupScene.instantiate()

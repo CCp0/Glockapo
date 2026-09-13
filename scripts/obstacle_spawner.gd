@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 
 
 func _spawn_obstacle() -> void:
-	if not InputBridge.player:
+	if not is_instance_valid(InputBridge.player):
 		return
 
 	var scenes: Array[PackedScene] = GameState.current_biome.flight_obstacle_scenes

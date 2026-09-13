@@ -13,23 +13,45 @@ color = Color(0, 0, 0, 0.6)
 
 [node name="Label" type="Label" parent="."]
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -80.0
-offset_right = 100.0
-offset_bottom = -40.0
+offset_left = -150.0
+offset_top = 60.0
+offset_right = 150.0
+offset_bottom = 110.0
+theme_override_font_sizes/font_size = 32
 text = "GAME OVER"
 horizontal_alignment = 1
 
+[node name="RunStatsLabel" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -220.0
+offset_top = 120.0
+offset_right = 220.0
+offset_bottom = 150.0
+theme_override_font_sizes/font_size = 18
+text = "Birds downed: 0    Nests destroyed: 0"
+horizontal_alignment = 1
+
+[node name="LeaderboardList" type="RichTextLabel" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -260.0
+offset_top = 180.0
+offset_right = 260.0
+offset_bottom = 780.0
+theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/bold_font_size = 20
+bbcode_enabled = true
+scroll_active = false
+
 [node name="RestartButton" type="Button" parent="."]
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -60.0
-offset_top = 0.0
-offset_right = 60.0
-offset_bottom = 40.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -70.0
+offset_top = -110.0
+offset_right = 70.0
+offset_bottom = -60.0
 text = "Restart"
