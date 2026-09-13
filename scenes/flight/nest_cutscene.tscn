@@ -1,28 +1,77 @@
-[gd_scene load_steps=2 format=3 uid="uid://jyax891lcg0yz"]
+[gd_scene format=3 uid="uid://b8g7256262ahh"]
 
-[ext_resource type="Script" path="res://scripts/nest_cutscene.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://cagcg2rnhugms" path="res://scripts/nest_cutscene.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://cs7yjjmbf2lu6" path="res://assets/kakapo/Kakapo Sprite.png" id="2_kakapo_tex"]
+[ext_resource type="Texture2D" uid="uid://coo22gxy1303n" path="res://assets/background/Nest Sprite.png" id="3_nest_tex"]
+[ext_resource type="Texture2D" uid="uid://83wvd0fv8dc3" path="res://assets/glock/GlockSprite.png" id="4_glock_tex"]
+[ext_resource type="AudioStream" uid="uid://6uy5kc3c4j2p" path="res://assets/glock/GunShotSound.ogg" id="5_gunshot_sound"]
 
-[node name="NestCutscene" type="Node2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_nest0"]
+atlas = ExtResource("3_nest_tex")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nest1"]
+atlas = ExtResource("3_nest_tex")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nest2"]
+atlas = ExtResource("3_nest_tex")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nest3"]
+atlas = ExtResource("3_nest_tex")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nest"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nest0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nest1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nest2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nest3")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="NestCutscene" type="Node2D" unique_id=1798870980]
 process_mode = 3
 script = ExtResource("1_script")
 
-[node name="Background" type="Polygon2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1148014970]
+position = Vector2(360, 480)
+
+[node name="Background" type="Polygon2D" parent="." unique_id=716742624]
 color = Color(0.55, 0.65, 0.85, 1)
 polygon = PackedVector2Array(0, 0, 720, 0, 720, 960, 0, 960)
 
-[node name="Nest" type="Node2D" parent="."]
+[node name="Nest" type="AnimatedSprite2D" parent="." unique_id=6167620]
 position = Vector2(440, 460)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_nest")
 
-[node name="Twig1" type="Polygon2D" parent="Nest"]
-color = Color(0.36, 0.22, 0.12, 1)
-polygon = PackedVector2Array(-40, 10, -10, -10, 10, -10, 40, 10, 20, 24, -20, 24)
-
-[node name="Twig2" type="Polygon2D" parent="Nest"]
-color = Color(0.3, 0.18, 0.1, 1)
-polygon = PackedVector2Array(-26, -6, 26, -6, 30, 10, -30, 10)
-
-[node name="KakapoSprite" type="Sprite2D" parent="."]
+[node name="KakapoSprite" type="Sprite2D" parent="." unique_id=1180969592]
 position = Vector2(320, 470)
 scale = Vector2(3, 3)
 texture = ExtResource("2_kakapo_tex")
+
+[node name="GlockSprite" type="Sprite2D" parent="." unique_id=1806601668]
+position = Vector2(372, 500)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("4_glock_tex")
+
+[node name="GunshotAudio" type="AudioStreamPlayer" parent="." unique_id=1676826081]
+stream = ExtResource("5_gunshot_sound")
+
+[node name="BlankOverlay" type="Polygon2D" parent="." unique_id=1873029051]
+visible = false
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(0, 0, 720, 0, 720, 960, 0, 960)

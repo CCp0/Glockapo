@@ -1,22 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://h0pv6hmrhre15"]
+[gd_scene format=3 uid="uid://v50dsaddnjm"]
 
-[ext_resource type="Script" path="res://scripts/fly_ascent.gd" id="1_fly_ascent_script"]
+[ext_resource type="Script" uid="uid://dno03upvjtrbw" path="res://scripts/fly_ascent.gd" id="1_fly_ascent_script"]
 [ext_resource type="PackedScene" uid="uid://ccfe6ebrqowgn" path="res://scenes/flight/flying_kakapo.tscn" id="2_flying_kakapo"]
-[ext_resource type="Script" path="res://scripts/obstacle_spawner.gd" id="3_obstacle_spawner_script"]
+[ext_resource type="Script" uid="uid://cj85h8bbf2fkk" path="res://scripts/obstacle_spawner.gd" id="3_obstacle_spawner_script"]
 
-[node name="FlyAscent" type="Node2D"]
+[node name="FlyAscent" type="Node2D" unique_id=2026077996]
 process_mode = 3
 script = ExtResource("1_fly_ascent_script")
 
-[node name="Background" type="Polygon2D" parent="."]
+[node name="Background" type="Polygon2D" parent="." unique_id=1937561235]
 color = Color(0.55, 0.65, 0.85, 1)
-polygon = PackedVector2Array(0, -2800, 720, -2800, 720, 700, 0, 700)
+polygon = PackedVector2Array(0, -3100, 720, -3100, 720, 700, 0, 700)
 
-[node name="FlyingKakapo" parent="." instance=ExtResource("2_flying_kakapo")]
+[node name="FlyingKakapo" parent="." unique_id=374190702 instance=ExtResource("2_flying_kakapo")]
 position = Vector2(360, 0)
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=919342674]
 position = Vector2(360, 0)
 
-[node name="ObstacleSpawner" type="Node2D" parent="."]
+[node name="ObstacleSpawner" type="Node2D" parent="." unique_id=601096803]
 script = ExtResource("3_obstacle_spawner_script")

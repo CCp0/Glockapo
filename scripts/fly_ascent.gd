@@ -4,10 +4,6 @@ class_name FlyAscent
 signal reached_top
 signal fell_to_arena
 
-# Camera dead-zone: never let the kakapo appear above screen-center while
-# rising (the camera scrolls to keep pace), but give it room to sink
-# toward the bottom of the frame while falling before the camera follows
-# — so the player can see it coming and react.
 const CENTER_Y := 480.0
 const BOTTOM_SLACK := 380.0
 
@@ -26,9 +22,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if _goal_reached:
-		# Camera's frozen — once the kakapo's own climb carries it to the
-		# top of that fixed view, the sequence is done.
-		if flying_kakapo.position.y - camera.position.y <= -CENTER_Y:
+		if flying_kakapo.position.y - camera.position.y <= -CENTER_Y or flying_kakapo.velocity.y >= 0.0:
 			flying_kakapo.mark_reached_top()
 			reached_top.emit()
 		return
