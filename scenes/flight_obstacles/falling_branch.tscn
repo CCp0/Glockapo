@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://qd9bu9an95eiq"]
+
+[ext_resource type="Script" path="res://scripts/flight_obstacle_base.gd" id="1_obstacle_script"]
+[ext_resource type="Texture2D" uid="uid://ckt8mb1wpn1jq" path="res://assets/platforms/branch.png" id="2_branch_tex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_branch"]
+size = Vector2(48, 16)
+
+[node name="FallingBranch" type="Area2D"]
+collision_layer = 64
+collision_mask = 4
+scale = Vector2(1.4, 1.4)
+script = ExtResource("1_obstacle_script")
+fall_speed = 200.0
+contact_damage = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_branch_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_branch")

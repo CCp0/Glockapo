@@ -1,8 +1,11 @@
 extends CharacterBody2D
 
-const SPEED := 220.0
+const SPEED := 250.0
 const ACCELERATION := 1760.0
 const GRAVITY := 1400.0
+const RECOIL_STRENGTH := 210.0
+const DOWN_SHOT_RECOIL_STRENGTH := 300.0
+const DOWN_SHOT_AIM_Y := 0.7
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var glock_mount: Weapon = $GlockMount
@@ -27,8 +30,9 @@ func _physics_process(delta: float) -> void:
 		sprite.flip_h = InputBridge.move_vector.x < 0.0
 
 
-func _on_glock_fired(recoil_impulse: Vector2) -> void:
-	velocity += recoil_impulse
+func _on_glock_fired(aim_dir: Vector2) -> void:
+	var strength: float = DOWN_SHOT_RECOIL_STRENGTH if aim_dir.y > DOWN_SHOT_AIM_Y else RECOIL_STRENGTH
+	velocity += -aim_dir * strength
 
 
 func take_contact_damage(amount: int) -> void:

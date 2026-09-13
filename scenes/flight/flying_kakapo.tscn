@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccfe6ebrqowgn"]
+
+[ext_resource type="Script" path="res://scripts/flying_kakapo.gd" id="1_flying_kakapo_script"]
+[ext_resource type="Texture2D" uid="uid://cs7yjjmbf2lu6" path="res://assets/kakapo/Kakapo Sprite.png" id="2_kakapo_tex"]
+[ext_resource type="Script" path="res://scripts/weapon.gd" id="3_weapon_script"]
+[ext_resource type="Texture2D" uid="uid://83wvd0fv8dc3" path="res://assets/glock/GlockSprite.png" id="4_glock_tex"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_flying_kakapo"]
+radius = 44.0
+
+[node name="FlyingKakapo" type="Area2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_flying_kakapo_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2.2, 2.2)
+texture = ExtResource("2_kakapo_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_flying_kakapo")
+
+[node name="LeftGlockMount" type="Node2D" parent="."]
+position = Vector2(-14, 8)
+scale = Vector2(1.8, 1.8)
+script = ExtResource("3_weapon_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="LeftGlockMount"]
+position = Vector2(-13.888889, 3.3333337)
+scale = Vector2(0.44097224, 0.3871528)
+texture = ExtResource("4_glock_tex")
+
+[node name="Muzzle" type="Marker2D" parent="LeftGlockMount"]
+position = Vector2(-28.333332, -2.777778)
+
+[node name="RightGlockMount" type="Node2D" parent="."]
+position = Vector2(14, 8)
+scale = Vector2(1.8, 1.8)
+script = ExtResource("3_weapon_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="RightGlockMount"]
+position = Vector2(-13.888889, 3.3333337)
+scale = Vector2(0.44097224, 0.3871528)
+texture = ExtResource("4_glock_tex")
+
+[node name="Muzzle" type="Marker2D" parent="RightGlockMount"]
+position = Vector2(-28.333332, -2.777778)

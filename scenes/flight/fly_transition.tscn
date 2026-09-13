@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://11tyuoti3kfp6"]
+
+[ext_resource type="Script" path="res://scripts/fly_transition.gd" id="1_fly_transition_script"]
+[ext_resource type="Texture2D" uid="uid://cs7yjjmbf2lu6" path="res://assets/kakapo/Kakapo Sprite.png" id="2_kakapo_tex"]
+
+[node name="FlyTransition" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_fly_transition_script")
+
+[node name="Background" type="Polygon2D" parent="."]
+color = Color(0.16, 0.45, 0.22, 1)
+polygon = PackedVector2Array(0, 0, 720, 0, 720, 960, 0, 960)
+
+[node name="Lines" type="Node2D" parent="."]
+
+[node name="KakapoCloseup" type="Sprite2D" parent="."]
+position = Vector2(360, 480)
+scale = Vector2(6, 6)
+texture = ExtResource("2_kakapo_tex")

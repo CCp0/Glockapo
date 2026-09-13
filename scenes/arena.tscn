@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b5mi2hr0ate3i" path="res://scenes/ui/game_over_screen.tscn" id="7_game_over"]
 [ext_resource type="Script" path="res://scripts/ammo_hud.gd" id="8_ammo_hud_script"]
 [ext_resource type="Script" path="res://scripts/rock_hud.gd" id="9_rock_hud_script"]
+[ext_resource type="Script" path="res://scripts/fly_button.gd" id="10_fly_button_script"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ground"]
 size = Vector2(720, 220)
@@ -47,6 +48,7 @@ zoom = Vector2(0.85, 0.85)
 [node name="GameOverScreen" parent="." unique_id=501114372 instance=ExtResource("7_game_over")]
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=285987804]
+process_mode = 3
 
 [node name="HealthHUD" type="HBoxContainer" parent="HUD" unique_id=1510429385]
 offset_left = 24.0
@@ -85,6 +87,19 @@ offset_right = -40.0
 grow_horizontal = 0
 grow_vertical = 0
 output = 1
+
+[node name="FlyButton" type="Button" parent="HUD"]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -70.0
+offset_right = 70.0
+offset_top = -100.0
+offset_bottom = -60.0
+grow_horizontal = 2
+text = "FLY"
+script = ExtResource("10_fly_button_script")
 
 [node name="TouchFireButton" type="Button" parent="HUD" unique_id=682040748]
 anchors_preset = 3

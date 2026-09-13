@@ -15,4 +15,7 @@ func _on_died() -> void:
 
 func _on_restart_pressed() -> void:
 	GameState.reset()
+	# In case death happened mid-flight (tree paused for the ascent
+	# sequence), make sure restarting doesn't leave the world frozen.
+	get_tree().paused = false
 	get_tree().reload_current_scene()

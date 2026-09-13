@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://ra0jvltdnryx" path="res://scenes/platforms/stump_platform.tscn" id="3_stump"]
 [ext_resource type="PackedScene" uid="uid://bsum4wfih0r20" path="res://scenes/enemies/wood_pigeon.tscn" id="4_wood_pigeon"]
 [ext_resource type="PackedScene" uid="uid://bui702qold41d" path="res://scenes/enemies/armored_pigeon.tscn" id="5_armored_pigeon"]
+[ext_resource type="PackedScene" uid="uid://qd9bu9an95eiq" path="res://scenes/flight_obstacles/falling_branch.tscn" id="6_falling_branch"]
+[ext_resource type="PackedScene" uid="uid://n772u2gmc7v2v" path="res://scenes/flight_obstacles/diving_bird.tscn" id="7_diving_bird"]
 
 [resource]
 script = ExtResource("1_script")
@@ -14,3 +16,4 @@ sky_color = Color(0.53, 0.75, 0.45, 1)
 platform_scenes = Array[PackedScene]([ExtResource("2_branch"), ExtResource("3_stump")])
 enemy_scene = ExtResource("4_wood_pigeon")
 ground_enemy_scene = ExtResource("5_armored_pigeon")
+flight_obstacle_scenes = Array[PackedScene]([ExtResource("6_falling_branch"), ExtResource("7_diving_bird")])

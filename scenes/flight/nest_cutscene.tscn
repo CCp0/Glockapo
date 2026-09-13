@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://jyax891lcg0yz"]
+
+[ext_resource type="Script" path="res://scripts/nest_cutscene.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://cs7yjjmbf2lu6" path="res://assets/kakapo/Kakapo Sprite.png" id="2_kakapo_tex"]
+
+[node name="NestCutscene" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_script")
+
+[node name="Background" type="Polygon2D" parent="."]
+color = Color(0.55, 0.65, 0.85, 1)
+polygon = PackedVector2Array(0, 0, 720, 0, 720, 960, 0, 960)
+
+[node name="Nest" type="Node2D" parent="."]
+position = Vector2(440, 460)
+
+[node name="Twig1" type="Polygon2D" parent="Nest"]
+color = Color(0.36, 0.22, 0.12, 1)
+polygon = PackedVector2Array(-40, 10, -10, -10, 10, -10, 40, 10, 20, 24, -20, 24)
+
+[node name="Twig2" type="Polygon2D" parent="Nest"]
+color = Color(0.3, 0.18, 0.1, 1)
+polygon = PackedVector2Array(-26, -6, 26, -6, 30, 10, -30, 10)
+
+[node name="KakapoSprite" type="Sprite2D" parent="."]
+position = Vector2(320, 470)
+scale = Vector2(3, 3)
+texture = ExtResource("2_kakapo_tex")
