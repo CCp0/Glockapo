@@ -40,14 +40,10 @@ func spend_rocks(amount: int) -> void:
 	rocks_changed.emit(rocks)
 
 
-## Called when a nest is destroyed: rocks reset (so the Fly button hides
-## again until the next 20), the wave ramps up, birds-this-wave resets.
 func start_new_wave() -> void:
 	wave += 1
 	nests_destroyed_this_run += 1
-	rocks = 0
 	birds_downed_this_wave = 0
-	rocks_changed.emit(rocks)
 
 	# wave is at least 2 here, i.e. this can't trigger until after the
 	# first nest is destroyed.

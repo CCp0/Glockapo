@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED := 250.0
+const SPEED := 300.0
 const ACCELERATION := 1760.0
 const GRAVITY := 1400.0
 const RECOIL_STRENGTH := 210.0

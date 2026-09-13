@@ -7,9 +7,33 @@
 [ext_resource type="Script" uid="uid://r8oc27gk8mhi" path="res://scripts/enemy_spawner.gd" id="5_enemy_spawner_script"]
 [ext_resource type="Script" uid="uid://dgnw3kqy80oko" path="res://scripts/health_hud.gd" id="6_health_hud_script"]
 [ext_resource type="PackedScene" uid="uid://b5mi2hr0ate3i" path="res://scenes/ui/game_over_screen.tscn" id="7_game_over"]
-[ext_resource type="Script" path="res://scripts/ammo_hud.gd" id="8_ammo_hud_script"]
-[ext_resource type="Script" path="res://scripts/rock_hud.gd" id="9_rock_hud_script"]
-[ext_resource type="Script" path="res://scripts/fly_button.gd" id="10_fly_button_script"]
+[ext_resource type="Script" uid="uid://xcrvcrdqntsq" path="res://scripts/ammo_hud.gd" id="8_ammo_hud_script"]
+[ext_resource type="Script" uid="uid://2s4rnf80clm3" path="res://scripts/rock_hud.gd" id="9_rock_hud_script"]
+[ext_resource type="Script" uid="uid://bhe70fguctice" path="res://scripts/fly_button.gd" id="10_fly_button_script"]
+[ext_resource type="PackedScene" uid="uid://bt24l2jyflv0d" path="res://scenes/platforms/branch_platform.tscn" id="11_branch"]
+[ext_resource type="PackedScene" uid="uid://ra0jvltdnryx" path="res://scenes/platforms/stump_platform.tscn" id="12_stump"]
+[ext_resource type="Texture2D" uid="uid://cvp7kt5uyst0c" path="res://assets/background/Tree Trunk Background.png" id="13_tree_trunks"]
+[ext_resource type="Texture2D" uid="uid://b4eva01ags8hr" path="res://assets/background/Forest Floor Background.png" id="14_forest_floor"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trunk_0"]
+atlas = ExtResource("13_tree_trunks")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trunk_2"]
+atlas = ExtResource("13_tree_trunks")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trunk_4"]
+atlas = ExtResource("13_tree_trunks")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trunk_1"]
+atlas = ExtResource("13_tree_trunks")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trunk_3"]
+atlas = ExtResource("13_tree_trunks")
+region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ground"]
 size = Vector2(720, 220)
@@ -23,6 +47,42 @@ script = ExtResource("1_arena_script")
 [node name="Background" type="Polygon2D" parent="." unique_id=2140869350]
 polygon = PackedVector2Array(0, 0, 720, 0, 720, 960, 0, 960)
 
+[node name="BackgroundTrees" type="Node2D" parent="." unique_id=311924906]
+
+[node name="Tree1" type="Node" parent="BackgroundTrees" unique_id=2009690761]
+
+[node name="TreeTrunk1" type="Sprite2D" parent="BackgroundTrees/Tree1" unique_id=1553135931]
+position = Vector2(-12.599995, 650)
+scale = Vector2(3.2, 3.2)
+texture = SubResource("AtlasTexture_trunk_0")
+
+[node name="TreeTrunk2" type="Sprite2D" parent="BackgroundTrees/Tree1" unique_id=278611604]
+position = Vector2(-5.5999794, 460)
+scale = Vector2(2.8, 2.8)
+texture = SubResource("AtlasTexture_trunk_2")
+
+[node name="TreeTrunk6" type="Sprite2D" parent="BackgroundTrees/Tree1" unique_id=877307177]
+position = Vector2(-2.5999985, 193.29999)
+scale = Vector2(2.8, 5.6343746)
+texture = SubResource("AtlasTexture_trunk_2")
+
+[node name="Tree2" type="Node" parent="BackgroundTrees" unique_id=943434641]
+
+[node name="TreeTrunk3" type="Sprite2D" parent="BackgroundTrees/Tree2" unique_id=1642160699]
+position = Vector2(728.6, 506)
+scale = Vector2(3.01875, 3.0499992)
+texture = SubResource("AtlasTexture_trunk_4")
+
+[node name="TreeTrunk4" type="Sprite2D" parent="BackgroundTrees/Tree2" unique_id=79225133]
+position = Vector2(728.6, 669)
+scale = Vector2(3, 3)
+texture = SubResource("AtlasTexture_trunk_1")
+
+[node name="TreeTrunk5" type="Sprite2D" parent="BackgroundTrees/Tree2" unique_id=881744039]
+position = Vector2(729.6, 209)
+scale = Vector2(3, 6.40625)
+texture = SubResource("AtlasTexture_trunk_3")
+
 [node name="Ground" type="StaticBody2D" parent="." unique_id=2089772106]
 position = Vector2(360, 850)
 collision_mask = 0
@@ -30,28 +90,45 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=2018121801]
 shape = SubResource("RectangleShape2D_ground")
 
-[node name="GrassVisual" type="Polygon2D" parent="Ground" unique_id=1239844378]
-polygon = PackedVector2Array(-360, -110, 360, -110, 360, -90, -360, -90)
+[node name="GrassVisual" type="Sprite2D" parent="Ground" unique_id=1239844378]
+position = Vector2(0, -92)
+scale = Vector2(0.5625, 0.5625)
+texture = ExtResource("14_forest_floor")
 
 [node name="SoilVisual" type="Polygon2D" parent="Ground" unique_id=1642217418]
-polygon = PackedVector2Array(-360, -90, 360, -90, 360, 110, -360, 110)
+polygon = PackedVector2Array(-424, -72, -1, -73, 421, -72, 417.09802, 111.48425, -424, 112, -422, 8)
+uv = PackedVector2Array(-423, -89, 419, -90, 417.09802, 111.48425, -419, 109, -420.8504, 8.733719)
 
 [node name="Platforms" type="Node2D" parent="." unique_id=997435839]
 
-[node name="LeftWall" type="StaticBody2D" parent="."]
+[node name="Branch1" parent="Platforms" unique_id=991660990 instance=ExtResource("11_branch")]
+position = Vector2(107.000015, 461.00003)
+scale = Vector2(2.6, 2.6)
+
+[node name="Branch2" parent="Platforms" unique_id=394017629 instance=ExtResource("11_branch")]
+position = Vector2(626.00006, 322.00003)
+scale = Vector2(-2.6, 2.6)
+
+[node name="Stump1" parent="Platforms" unique_id=1292157900 instance=ExtResource("12_stump")]
+position = Vector2(141, 806)
+scale = Vector2(1.5, 1.5)
+
+[node name="Stump2" parent="Platforms" unique_id=875274470 instance=ExtResource("12_stump")]
+position = Vector2(609, 775)
+scale = Vector2(1.5, 1.5)
+
+[node name="LeftWall" type="StaticBody2D" parent="." unique_id=252656788]
 position = Vector2(-20, 480)
-collision_layer = 1
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall" unique_id=1954062837]
 shape = SubResource("RectangleShape2D_wall")
 
-[node name="RightWall" type="StaticBody2D" parent="."]
+[node name="RightWall" type="StaticBody2D" parent="." unique_id=906267478]
 position = Vector2(740, 480)
-collision_layer = 1
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall" unique_id=196517424]
 shape = SubResource("RectangleShape2D_wall")
 
 [node name="Kakapo" parent="." unique_id=890051436 instance=ExtResource("2_kakapo")]
@@ -76,14 +153,15 @@ offset_right = 200.0
 offset_bottom = 44.0
 script = ExtResource("6_health_hud_script")
 
-[node name="AmmoHUD" type="HBoxContainer" parent="HUD"]
+[node name="AmmoHUD" type="HBoxContainer" parent="HUD" unique_id=849650773]
 offset_left = 24.0
 offset_top = 54.0
 offset_right = 250.0
 offset_bottom = 78.0
 script = ExtResource("8_ammo_hud_script")
 
-[node name="RockHUD" type="HBoxContainer" parent="HUD"]
+[node name="RockHUD" type="HBoxContainer" parent="HUD" unique_id=1345329594]
+anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -140.0
@@ -102,19 +180,22 @@ anchors_preset = 3
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -160.0
+offset_top = -120.0
 offset_right = -40.0
+offset_bottom = 0.0
 grow_horizontal = 0
 grow_vertical = 0
 output = 1
 
-[node name="FlyButton" type="Button" parent="HUD"]
+[node name="FlyButton" type="Button" parent="HUD" unique_id=2024174650]
+anchors_preset = 7
 anchor_left = 0.5
-anchor_right = 0.5
 anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -70.0
-offset_right = 70.0
 offset_top = -100.0
+offset_right = 70.0
 offset_bottom = -60.0
 grow_horizontal = 2
 text = "FLY"
