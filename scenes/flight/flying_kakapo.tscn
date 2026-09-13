@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccfe6ebrqowgn"]
+[gd_scene load_steps=7 format=3 uid="uid://ccfe6ebrqowgn"]
 
 [ext_resource type="Script" path="res://scripts/flying_kakapo.gd" id="1_flying_kakapo_script"]
 [ext_resource type="Texture2D" uid="uid://cs7yjjmbf2lu6" path="res://assets/kakapo/Kakapo Sprite.png" id="2_kakapo_tex"]
 [ext_resource type="Script" path="res://scripts/weapon.gd" id="3_weapon_script"]
 [ext_resource type="Texture2D" uid="uid://83wvd0fv8dc3" path="res://assets/glock/GlockSprite.png" id="4_glock_tex"]
+[ext_resource type="AudioStream" uid="uid://6uy5kc3c4j2p" path="res://assets/glock/GunShotSound.ogg" id="5_gunshot_sound"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_flying_kakapo"]
 radius = 44.0
@@ -33,6 +34,9 @@ texture = ExtResource("4_glock_tex")
 [node name="Muzzle" type="Marker2D" parent="LeftGlockMount"]
 position = Vector2(-28.333332, -2.777778)
 
+[node name="MuzzleAudio" type="AudioStreamPlayer2D" parent="LeftGlockMount"]
+stream = ExtResource("5_gunshot_sound")
+
 [node name="RightGlockMount" type="Node2D" parent="."]
 position = Vector2(14, 8)
 scale = Vector2(1.8, 1.8)
@@ -45,3 +49,6 @@ texture = ExtResource("4_glock_tex")
 
 [node name="Muzzle" type="Marker2D" parent="RightGlockMount"]
 position = Vector2(-28.333332, -2.777778)
+
+[node name="MuzzleAudio" type="AudioStreamPlayer2D" parent="RightGlockMount"]
+stream = ExtResource("5_gunshot_sound")

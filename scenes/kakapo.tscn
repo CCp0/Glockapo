@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cs7yjjmbf2lu6" path="res://assets/kakapo/Kakapo Sprite.png" id="2_kakapo_tex"]
 [ext_resource type="Script" uid="uid://bhqm0bqo5mgkc" path="res://scripts/weapon.gd" id="3_weapon_script"]
 [ext_resource type="Texture2D" uid="uid://83wvd0fv8dc3" path="res://assets/glock/GlockSprite.png" id="4_glock_tex"]
+[ext_resource type="AudioStream" uid="uid://6uy5kc3c4j2p" path="res://assets/glock/GunShotSound.ogg" id="5_gunshot_sound"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kakapo"]
 radius = 38.0
@@ -34,3 +35,6 @@ texture = ExtResource("4_glock_tex")
 
 [node name="Muzzle" type="Marker2D" parent="GlockMount" unique_id=1248320866]
 position = Vector2(-28.333332, -2.777778)
+
+[node name="MuzzleAudio" type="AudioStreamPlayer2D" parent="GlockMount"]
+stream = ExtResource("5_gunshot_sound")

@@ -9,6 +9,8 @@ const FIRE_COOLDOWN := 0.10
 const RELOAD_TIME := 1
 
 const BulletScene := preload("res://scenes/bullet.tscn")
+const RockTexture := preload("res://assets/player_resources/Rock.png")
+const ROCK_VISUAL_SCALE := Vector2(0.5, 0.5)
 
 ## When false, fired bullets don't collide with anything — used in flight
 ## mode, where the guns are propulsion-only and never deal damage.
@@ -24,6 +26,7 @@ const BulletScene := preload("res://scenes/bullet.tscn")
 var external_fire_held: bool = false
 
 @onready var muzzle: Marker2D = $Muzzle
+@onready var muzzle_audio: AudioStreamPlayer2D = $MuzzleAudio
 
 var rounds_in_mag := MAG_SIZE
 var reloading := false
@@ -76,12 +79,22 @@ func _fire() -> void:
 	_fire_cooldown_remaining = FIRE_COOLDOWN
 	ammo_changed.emit(rounds_in_mag, MAG_SIZE)
 
+	# Slight pitch variation so rapid fire doesn't sound like the exact
+	# same clip stuttering.
+	muzzle_audio.pitch_scale = randf_range(0.92, 1.08)
+	muzzle_audio.play()
+
 	var aim_dir: Vector2 = fixed_aim_direction if use_fixed_aim else InputBridge.aim_vector
 
 	var bullet: Area2D = BulletScene.instantiate()
 	bullet.global_position = muzzle.global_position
 	bullet.direction = aim_dir
 	bullet.monitoring = bullets_collide
+	if not bullets_collide:
+		# Flight mode fires rocks (the fuel being spent) instead of bullets.
+		var bullet_sprite: Sprite2D = bullet.get_node("Sprite2D")
+		bullet_sprite.texture = RockTexture
+		bullet_sprite.scale = ROCK_VISUAL_SCALE
 	get_tree().current_scene.add_child(bullet)
 
 	fired.emit(aim_dir)
