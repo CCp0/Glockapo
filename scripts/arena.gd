@@ -26,6 +26,7 @@ const NestCutsceneScene := preload("res://scenes/flight/nest_cutscene.tscn")
 @onready var soil_visual: Polygon2D = $Ground/SoilVisual
 @onready var platforms: Node2D = $Platforms
 @onready var kakapo: CharacterBody2D = $Kakapo
+@onready var enemy_spawner: EnemySpawner = $EnemySpawner
 @onready var main_camera: Camera2D = $MainCamera
 @onready var fly_button: Button = $HUD/FlyButton
 @onready var ammo_hud: Control = $HUD/AmmoHUD
@@ -80,7 +81,10 @@ func _start_ascent() -> void:
 		# center, so the drop-in feels continuous with where they were.
 		var drop_x: float = ascent.flying_kakapo.position.x
 		ascent.queue_free()
-		_return_to_arena(drop_x)
+		# fell_to_arena originates from FlyingKakapo's _physics_process —
+		# defer so any enemy add/remove below doesn't risk the same
+		# mid-physics-flush error fixed for pigeon deaths earlier.
+		call_deferred("_return_to_arena", drop_x)
 	)
 
 
@@ -90,7 +94,7 @@ func _start_nest_cutscene() -> void:
 	cutscene.finished.connect(func() -> void:
 		cutscene.queue_free()
 		GameState.start_new_wave()
-		_return_to_arena(KAKAPO_SPAWN_POSITION.x)
+		call_deferred("_return_to_arena", KAKAPO_SPAWN_POSITION.x)
 	)
 
 
@@ -100,4 +104,12 @@ func _return_to_arena(x_position: float) -> void:
 	kakapo.position = Vector2(x_position, ARENA_DROP_IN_Y)
 	kakapo.velocity = Vector2.ZERO
 	ammo_hud.visible = true
+	_clear_enemies()
+	enemy_spawner.reset_for_new_wave()
 	get_tree().paused = false
+
+
+func _clear_enemies() -> void:
+	for child in get_children():
+		if child is EnemyBase:
+			child.queue_free()

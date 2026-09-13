@@ -14,6 +14,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ground"]
 size = Vector2(720, 220)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall"]
+size = Vector2(40, 2000)
+
 [node name="Arena" type="Node2D" unique_id=552640823]
 script = ExtResource("1_arena_script")
 
@@ -34,6 +37,22 @@ polygon = PackedVector2Array(-360, -110, 360, -110, 360, -90, -360, -90)
 polygon = PackedVector2Array(-360, -90, 360, -90, 360, 110, -360, 110)
 
 [node name="Platforms" type="Node2D" parent="." unique_id=997435839]
+
+[node name="LeftWall" type="StaticBody2D" parent="."]
+position = Vector2(-20, 480)
+collision_layer = 1
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
+shape = SubResource("RectangleShape2D_wall")
+
+[node name="RightWall" type="StaticBody2D" parent="."]
+position = Vector2(740, 480)
+collision_layer = 1
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
+shape = SubResource("RectangleShape2D_wall")
 
 [node name="Kakapo" parent="." unique_id=890051436 instance=ExtResource("2_kakapo")]
 position = Vector2(360, 650)

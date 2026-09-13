@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://3i6b7o7ihio1"]
+
+[ext_resource type="Script" path="res://scripts/start_screen.gd" id="1_start_screen_script"]
+[ext_resource type="Texture2D" uid="uid://cs7yjjmbf2lu6" path="res://assets/kakapo/Kakapo Sprite.png" id="2_kakapo_tex"]
+
+[node name="StartScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_start_screen_script")
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.08, 0.16, 0.09, 1)
+
+[node name="FlavorLabel" type="Label" parent="."]
+anchor_right = 1.0
+offset_left = 30.0
+offset_top = 50.0
+offset_right = -30.0
+offset_bottom = 220.0
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.9, 0.95, 0.85, 1)
+text = "The Kakapos were nearly extinct, then one found a gun.\n\nThey really did not like pigeons — we'll let you fill in the rest."
+horizontal_alignment = 1
+vertical_alignment = 0
+autowrap_mode = 2
+
+[node name="KakapoIcon" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_top = 230.0
+offset_right = 60.0
+offset_bottom = 350.0
+texture = ExtResource("2_kakapo_tex")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ControlsPanel" type="RichTextLabel" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = 380.0
+offset_right = 320.0
+offset_bottom = -110.0
+theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/bold_font_size = 20
+theme_override_colors/default_color = Color(0.92, 0.95, 0.9, 1)
+bbcode_enabled = true
+text = "[center][b]ARENA[/b]
+Move: WASD   •   Aim: Mouse   •   Fire: Click
+Reload: R (auto-reloads when empty)
+Touch: joystick to move + aim, button to fire
+Tip: aim almost straight down and fire to launch up onto a branch
+
+[b]FLIGHT[/b]  (bank 20 rocks, then press FLY)
+A: fire left gun     D: fire right gun     W: fire both (straight up)
+Dodge the falling branches and diving birds — reach the nest![/center]"
+scroll_active = false
+
+[node name="StartPrompt" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -90.0
+offset_right = 160.0
+offset_bottom = -40.0
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+text = "Click / Tap to Start"
+horizontal_alignment = 1
