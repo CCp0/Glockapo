@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dwvij0w1s0dbh"
+path="res://.godot/imported/Flying Music.wav-7b4ab6fcf6348f0d2f4bb617e78be4bb.sample"
+
+[deps]
+
+source_file="res://assets/music/Flying Music.wav"
+dest_files=["res://.godot/imported/Flying Music.wav-7b4ab6fcf6348f0d2f4bb617e78be4bb.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

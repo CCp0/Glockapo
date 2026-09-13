@@ -24,6 +24,7 @@ const NestCutsceneScene := preload("res://scenes/flight/nest_cutscene.tscn")
 func _ready() -> void:
 	_apply_biome_colors()
 	fly_button.pressed.connect(_on_fly_pressed)
+	Music.play_gameplay()
 
 
 func _apply_biome_colors() -> void:
@@ -33,6 +34,7 @@ func _apply_biome_colors() -> void:
 
 func _on_fly_pressed() -> void:
 	get_tree().paused = true
+	Music.play_flying()
 	ammo_hud.visible = false
 	# Rocks don't actually change until the ascent starts spending them, so
 	# without this the button stays visible/clickable for the whole
@@ -78,6 +80,7 @@ func _start_nest_cutscene() -> void:
 
 func _return_to_arena(x_position: float) -> void:
 	main_camera.make_current()
+	Music.play_gameplay()
 	InputBridge.player = kakapo
 	kakapo.position = Vector2(x_position, ARENA_DROP_IN_Y)
 	kakapo.velocity = Vector2.ZERO

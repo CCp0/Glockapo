@@ -9,6 +9,10 @@ var _pulse_time: float = 0.0
 var _starting: bool = false
 
 
+func _ready() -> void:
+	Music.play_title()
+
+
 func _process(delta: float) -> void:
 	_pulse_time += delta
 	start_prompt.modulate.a = 0.5 + 0.5 * sin(_pulse_time * PULSE_SPEED)
