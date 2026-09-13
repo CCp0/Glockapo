@@ -1,0 +1,46 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://chpgtxgtb2lvl"]
+
+[ext_resource type="Texture2D" uid="uid://eu6wj6xoi1ce" path="res://assets/special_effects/CriticalHitSprite.png" id="1_crit_tex"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_crit_0"]
+atlas = ExtResource("1_crit_tex")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_crit_1"]
+atlas = ExtResource("1_crit_tex")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_crit_2"]
+atlas = ExtResource("1_crit_tex")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_crit_3"]
+atlas = ExtResource("1_crit_tex")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_crit_4"]
+atlas = ExtResource("1_crit_tex")
+region = Rect2(256, 0, 64, 64)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_crit_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_crit_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_crit_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_crit_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_crit_4")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 12.0
+}]

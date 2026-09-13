@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=8 format=3]
+[gd_resource type="SpriteFrames" format=3 uid="uid://bgpokwgxfbxpa"]
 
 [ext_resource type="Texture2D" uid="uid://be7qqnadnisu8" path="res://assets/armored_pigeon/ArmoredPigeonWalkingSprite.png" id="1_walk_tex"]
 
@@ -47,7 +47,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_walk_5")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk",
 "speed": 8.0
 }]

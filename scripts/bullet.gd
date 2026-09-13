@@ -6,6 +6,7 @@ const LIFETIME := 1.5
 var direction: Vector2 = Vector2.RIGHT
 
 var _time_alive := 0.0
+var _hit: bool = false
 
 
 func _ready() -> void:
@@ -14,6 +15,9 @@ func _ready() -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
+	if _hit:
+		return
+	_hit = true
 	if area.has_method("take_damage"):
 		area.take_damage(1)
 	queue_free()

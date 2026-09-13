@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://zqyesfb5orqqn"]
+
+[ext_resource type="Script" path="res://scripts/critical_hit_effect.gd" id="1_crit_effect_script"]
+[ext_resource type="SpriteFrames" path="res://resources/critical_hit_sprite_frames.tres" id="2_crit_frames"]
+
+[node name="CriticalHitEffect" type="AnimatedSprite2D"]
+sprite_frames = ExtResource("2_crit_frames")
+animation = &"default"
+script = ExtResource("1_crit_effect_script")

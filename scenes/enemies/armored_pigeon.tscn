@@ -1,25 +1,41 @@
 [gd_scene format=3 uid="uid://bui702qold41d"]
 
-[ext_resource type="Script" path="res://scripts/enemy_base.gd" id="1_enemy_script"]
+[ext_resource type="Script" uid="uid://clwoo4psd5204" path="res://scripts/enemy_base.gd" id="1_enemy_script"]
 [ext_resource type="SpriteFrames" path="res://resources/armored_pigeon_sprite_frames.tres" id="2_armored_frames"]
+[ext_resource type="Script" uid="uid://co6yq28uxuwla" path="res://scripts/head_hitbox.gd" id="3_head_hitbox_script"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_armored"]
-radius = 26.0
+radius = 20.0
 
-[node name="ArmoredPigeon" type="Area2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_armored_head"]
+radius = 10.570165
+
+[node name="ArmoredPigeon" type="Area2D" unique_id=642783323]
+scale = Vector2(1.8, 1.8)
 collision_layer = 16
 collision_mask = 4
-scale = Vector2(1.8, 1.8)
 script = ExtResource("1_enemy_script")
 speed = 70.0
 health = 5
 contact_damage = 2
 spawn_location = 1
+headshot_damage_multiplier = 0.5
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=941371950]
 sprite_frames = ExtResource("2_armored_frames")
 animation = &"walk"
 autoplay = "walk"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2065309937]
+position = Vector2(5, 2)
 shape = SubResource("CircleShape2D_armored")
+
+[node name="HeadHitbox" type="Area2D" parent="." unique_id=1024249715]
+position = Vector2(-15, -13)
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("3_head_hitbox_script")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HeadHitbox" unique_id=352415680]
+position = Vector2(-2.2222223, -4.2222223)
+shape = SubResource("CircleShape2D_armored_head")
